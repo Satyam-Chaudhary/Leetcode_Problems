@@ -1,5 +1,12 @@
 class Solution {
 public:
+
+    void printVector(const vector<int>& nums) {
+        for(int it : nums) {
+            cout << it;
+        }
+    }
+    
     void nextPermutation(vector<int>& nums) {
         int index = -1;
         int n = nums.size();
@@ -13,9 +20,7 @@ public:
 
         if(index == -1){
             reverse(nums.begin(), nums.end());
-            for(auto it: nums){
-                cout << it;
-            }
+            printVector(nums);
             return;
         }
 
@@ -27,8 +32,6 @@ public:
         }
 
         reverse(nums.begin() + index + 1, nums.end());
-        for(auto it: nums){
-                cout << it;
-            }
+        printVector(nums);
     }
 };
