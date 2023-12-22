@@ -11,22 +11,18 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode *prev = nullptr;
-        ListNode *current = head;
-        ListNode *next = nullptr;
-
-        while (current != nullptr) {
-            next = current->next;  // Save the next node
-            current->next = prev;  // Reverse the link
-
-            // Move to the next pair of nodes
-            prev = current;
-            current = next;
+        ListNode *p = NULL, *q = head, *r = NULL;
+        if(head == NULL){
+            return head;
+        }else{
+           while(q != NULL){
+               p = q->next;
+               q->next = r;
+               r = q;
+               q = p;
+           }
+           head = r;
         }
-
-        // Update the head to the last node (now the first)
-        head = prev;
-
         return head;
     }
 };
