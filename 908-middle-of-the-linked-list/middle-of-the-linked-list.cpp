@@ -18,8 +18,8 @@ public:
             p = p->next;
         }
 
-        // auto middle = count/2;
-        for(int i = 0; i < count/2; i++){
+        auto middle = count/2;
+        for(int i = 0; i < middle; i++){
             q = q->next;
         }
         return q;
