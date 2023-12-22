@@ -11,17 +11,18 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        auto p = head, q = head;
+        auto p = head;
+        // auto q = head;
         auto count = 0;
         while(p != NULL){
             count++;
             p = p->next;
         }
 
-        auto middle = count/2;
-        for(int i = 0; i < middle; i++){
-            q = q->next;
+        // auto middle = count/2;
+        for(int i = 0; i < count/2 ; i++){
+            head = head->next;
         }
-        return q;
+        return head;
     }
 };
