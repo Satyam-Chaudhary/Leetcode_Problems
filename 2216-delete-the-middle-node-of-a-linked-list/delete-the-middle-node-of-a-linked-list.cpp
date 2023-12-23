@@ -24,7 +24,7 @@ public:
             q = q->next;
         }
         r->next = q->next;
-        // q->next = nullptr;
+        q->next = nullptr;
         delete q;
 
         return head;
