@@ -14,7 +14,7 @@ public:
         ListNode *d = new ListNode;
         ListNode *temp = d;
         int carry =0;
-        while(l1 != NULL || l2 != NULL || carry == 1){
+        while(l1 != NULL || l2 != NULL || carry != 0){
             int sum = 0;
             if(l1 != NULL){
                 sum += l1->val;
