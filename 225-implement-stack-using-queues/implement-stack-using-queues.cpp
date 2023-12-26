@@ -8,9 +8,7 @@ public:
     }
     
     void push(int x) {
-        if(q1.empty()){
-            q1.push(x);
-        }else{
+        
             while(!q1.empty()){
                 int e = q1.front();
                 q1.pop();
@@ -22,7 +20,7 @@ public:
                 q2.pop();
             }
         }
-    }
+    
     
     int pop() {
         int e = q1.front();
