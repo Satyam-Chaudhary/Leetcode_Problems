@@ -14,8 +14,7 @@ var maxArea = function(height) {
     // }
     // return maxArea;
 
-    let p1 = 0;
-    let p2 = height.length - 1;
+    let p1 = 0, p2 = height.length - 1;
     let maxArea= 0;
     while(p1 < p2){
         let length = Math.min(height[p1], height[p2]);
