@@ -4,17 +4,17 @@
  * @return {boolean}
  */
 var backspaceCompare = function(s, t) {
-   let A = [];
-   let B = [];
-   for(let i = 0; i < s.length; i++){
-    if(s[i] !== '#'){
-        A.push(s[i]);
-    }
-    if(s[i] === '#' && s.length !== 0){
-            A.pop();
-    }
+   let A = checkString(s);
+   let B = checkString(t);
+  if(A === B){
+    return true;
+   }else{
+    return false;
    }
+};
 
+function checkString(t){
+    let B = [];
     for(let i = 0; i < t.length; i++){
     if(t[i] !== '#'){
         B.push(t[i]);
@@ -23,10 +23,5 @@ var backspaceCompare = function(s, t) {
             B.pop();
     }
    }
-
-   if(A.join('') === B.join('')){
-    return true;
-   }else{
-    return false;
-   }
-};
+   return B.join('');
+}
