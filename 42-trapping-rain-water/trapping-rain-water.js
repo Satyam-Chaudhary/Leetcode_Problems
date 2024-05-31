@@ -41,8 +41,8 @@ var trap = function (height) {
     //     }
     // }
     // return total;
-let maxL = 0, maxR = 0;
   let lp = 0 , rp = height.length - 1;
+    let maxL = height[lp] , maxR = height[rp];
   let total = 0;
 
   while(lp < rp){
