@@ -42,21 +42,22 @@ var trap = function (height) {
     // }
     // return total;
   let lp = 0 , rp = height.length - 1;
-    let maxL = height[lp] , maxR = height[rp];
+  let maxL = height[lp], maxR = height[rp];
   let total = 0;
 
-  while(lp < rp){
+  while(lp <= rp){
       let cw = 0;
-      if(height[lp] < height[rp]){
+
+      if(height[lp] <= height[rp]){
           maxL = Math.max(maxL , height[lp]);
-          cw = maxL- height[lp];
+          cw = maxL - height[lp];
           lp++;
       }else{
           maxR = Math.max(maxR, height[rp]);
           cw = maxR - height[rp];
           rp--;
       }
-      if(cw > 0){
+      if(cw >= 0){
           total += cw;
       }
   }
