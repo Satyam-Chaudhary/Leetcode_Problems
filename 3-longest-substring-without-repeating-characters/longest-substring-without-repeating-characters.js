@@ -3,6 +3,7 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
+    if(s.length <=1) return s.length;
     let longest = 0;
     for(let p = 0; p < s.length; p++){
         let hm = new Map();
