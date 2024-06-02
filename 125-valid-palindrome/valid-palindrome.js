@@ -5,7 +5,7 @@
 var isPalindrome = function (s) {
     s = s.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
     if(s.length === 0) return true;
-    return method1(s);
+    return method2(s);
 };
 
 const method1 = function(s){
@@ -21,3 +21,20 @@ const method1 = function(s){
     }
     return true;
 }
+
+ const method2 = function(s){
+    let l = Math.floor(s.length/2);
+    let r = l;
+    if(s.length % 2 === 0){
+        l--;
+    }
+
+    while(l >= 0 && r < s.length){
+        if(s[l] !== s[r]){
+         return false;   
+        }
+        l--;
+        r++;
+    }
+    return true;
+ }
