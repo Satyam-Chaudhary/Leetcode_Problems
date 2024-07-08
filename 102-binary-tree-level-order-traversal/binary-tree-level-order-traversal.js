@@ -18,11 +18,12 @@ var levelOrder = function (root) {
         let cllength = q.length; // current-level length
         let cla = []; //current level array
         let count = 0;
-        while (count < cllength) {
+        // while (count < cllength) {
+        for(let i = 0 ; i < cllength; i++){
             let cn = q.shift();
             if (cn.left) q.push(cn.left);
             if (cn.right) q.push(cn.right);
-            count++;
+            // count++;
             cla.push(cn.val);
         }
         res.push(cla);
