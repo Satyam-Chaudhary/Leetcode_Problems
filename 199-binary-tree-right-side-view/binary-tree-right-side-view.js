@@ -11,8 +11,29 @@
  * @return {number[]}
  */
 var rightSideView = function(root) {
-    return bfsSolution(root);
+    // return bfsSolution(root);
+    if(!root) return [];
+    let level = 0;
+    let hm = {};
+    let res = [];
+    return dfsSolution(root, level, res, hm);
 };
+
+
+
+function dfsSolution(cn, level,  res, hm){
+    function dfsSol(cn,level){
+        if(!hm[level]){
+            res.push(cn.val);
+            hm[level] = true;
+        }
+        if(cn.right) dfsSol(cn.right, level+1);
+        if(cn.left) dfsSol(cn.left, level+1);
+        return res;
+    }
+    return dfsSol(cn,level);
+}
+
 
 function bfsSolution(root){
     if(!root) return[];
