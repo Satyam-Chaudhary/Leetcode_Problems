@@ -23,9 +23,9 @@ var rightSideView = function(root) {
 
 function dfsSolution(cn, level,  res, hm){
     function dfsSol(cn,level){
-        if(!hm[level]){
+        if(hm[level] === undefined){
             res.push(cn.val);
-            hm[level] = true;
+            hm[level] = cn.val;
         }
         if(cn.right) dfsSol(cn.right, level+1);
         if(cn.left) dfsSol(cn.left, level+1);
