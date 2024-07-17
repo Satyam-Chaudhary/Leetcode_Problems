@@ -13,25 +13,22 @@
 var countNodes = function (root) {
     if (!root) return 0;
 
-    let h = getHeight(root);
-    if (h === 1) return 1;
-    let upperNodes = Math.pow(2, h - 1) - 1;
-    let mln = Math.pow(2, h - 1); // max last level nodes
+    let h = getHeight(root) - 1;
+    if (h === 0) return 1;
+    let upperCount = Math.pow(2, h) - 1;
     let left = 0;
-    let right = mln - 1;
-    let mid, midVal;
+    let right = upperCount;
 
-    while (left <= right) {
-        mid = Math.floor((left + right) / 2);
-        midVal = navigateToNode(root, mid, mln, h);
-        if (midVal !== null) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
+    while (left < right) {
+        let idxToFind = Math.ceil((left+right)/2);
+        if(nodeExists(idxToFind, h, root)){
+            left = idxToFind;
+        }else{
+            right = idxToFind - 1;
         }
     }
-    let lowerNodes = left; // lower level nodes
-    return (lowerNodes + upperNodes);
+    let lowerCount = left + 1;
+    return(upperCount + lowerCount)
 };
 
 function getHeight(cn) {
@@ -43,20 +40,19 @@ function getHeight(cn) {
     return count;
 }
 
-function navigateToNode(cn, mid, mln, h) {
-    let l = 0; // left
-    let r = mln - 1; // right
-    let newMid; // to calculate the node is on left subtree or right subtree
-    for (let i = 0; i < h - 1; i++) {
-        newMid = Math.floor((l + r) / 2);
-        if (mid <= newMid) { // left subtree
-            r = newMid - 1;
-            cn = cn.left;
-        } else {
-            l = newMid + 1;
+
+function nodeExists(idxToFind, h, cn){
+    let left = 0;
+    let right = Math.pow(2, h) - 1;
+    for(let i = 0; i< h; i++){
+        let midNode = Math.ceil((left+right)/2);
+        if(idxToFind >= midNode){
             cn = cn.right;
+            left = midNode;
+        }else{
+            cn = cn.left;
+            right = midNode - 1;
         }
     }
-
-    return cn !== null ? cn.val : null;
-}
+    return cn !== null;
+};
