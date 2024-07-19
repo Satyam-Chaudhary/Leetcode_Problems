@@ -12,7 +12,8 @@
  */
 var isValidBST = function(root) {
     if(!root) return true;
-    return dfsValid(root, -Infinity, Infinity);
+    // return dfsValid(root, -Infinity, Infinity);
+    return shortenDfs(root, -Infinity, Infinity);
 };
 
 
@@ -34,4 +35,17 @@ function dfsValid(node, min, max){
     }
 
     return true;
+}
+
+function shortenDfs(node, min, max){
+
+    if(!node){
+        return true;
+    }
+
+    if(node.val <= min || node.val >= max){
+        return false;
+    }
+
+    return (shortenDfs(node.left, min, node.val) && shortenDfs(node.right, node.val, max))
 }
