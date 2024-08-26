@@ -20,6 +20,22 @@ var productExceptSelf = function (nums) {
     // }
     // return answer;
 
+
+    let answer = new Array(nums.length).fill(1);
+    let pre = 1;
+    for (let i = 0; i < nums.length - 1; i++){
+        pre = pre * nums[i];
+        answer[i+1] = pre;
+    }
+    let post = 1;
+    for (let j = nums.length - 1; j > 0; j--){
+        post = post * nums[j];
+        answer[j-1] = answer[j-1] * post;
+    }
+    return answer;
+};
+
+function badSpaceComp(nums){
     const prefix = new Array(nums.length);
     const postfix = new Array(nums.length);
     const answer = new Array(nums.length);
@@ -51,8 +67,8 @@ var productExceptSelf = function (nums) {
         answer[i] = prefix[i - 1] * postfix[i + 1];
 
     }
-    console.log(prefix);
-    console.log(postfix);
-    console.log(answer);
+    // console.log(prefix);
+    // console.log(postfix);
+    // console.log(answer);
     return answer;
-};
+}
