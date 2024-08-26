@@ -94,28 +94,52 @@ var topKFrequent = function (nums, k) {
     // }  
     // return finalArr;
 
-    //TC -> O(nlogk)
+    //TC -> O(nlogk) minHeap
 
-    const freqMap = new Map();
-    nums.forEach(num => {
+    // const freqMap = new Map();
+    // nums.forEach(num => {
+    //     freqMap.set(num, (freqMap.get(num) || 0) + 1);
+    // });
+
+    // const minHeap = new MinHeap();
+    // freqMap.forEach((freq, num) => {
+    //     minHeap.push([freq, num]);
+    //     if (minHeap.size() > k) {
+    //         minHeap.pop();
+    //     }
+    // });
+
+    // const topKFreq = [];
+
+    // while (minHeap.size() > 0) {
+    //     topKFreq.push(minHeap.pop()[1]);
+    // }
+
+    // return topKFreq;
+
+    //TC -> O(n) BUCKET SORT SC -> O(n)
+    let freqMap = new Map();
+    let arr = new Array(nums.length + 1).fill(0);
+    let ans = [];
+
+    nums.forEach((num) => {
         freqMap.set(num, (freqMap.get(num) || 0) + 1);
-    });
+    })
 
-    const minHeap = new MinHeap();
-    freqMap.forEach((freq, num) => {
-        minHeap.push([freq, num]);
-        if (minHeap.size() > k) {
-            minHeap.pop();
+    for (let [key, val] of freqMap) {
+        const prev = arr[val] || [];
+        prev.push(key);
+        arr[val] = prev;
+    };
+
+    for (let i = arr.length; i >= 0; i--) {
+        if (k < 1) break;
+        if (arr[i]) {
+            for (let el of arr[i]) {
+                ans.push(el);
+                k--;
+            }
         }
-    });
-
-    const topKFreq = [];
-
-    while (minHeap.size() > 0) {
-        topKFreq.push(minHeap.pop()[1]);
     }
-
-    return topKFreq;
-
-
+    return ans;
 };
