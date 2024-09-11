@@ -8,7 +8,7 @@ var longestConsecutive = function (nums) {
         return longestSeq;
     }
     if(nums.length === 0) return 0;
-    let hm = {};
+    let hm = {}; // cam also use set
     nums.forEach(num => { //O(n)
         hm[num] = true;
     });
@@ -17,7 +17,7 @@ var longestConsecutive = function (nums) {
         let curr = nums[i];
         if (!hm[curr - 1]) {
             let currentSeq = 1;
-            while (hm[curr + 1]) { //O(k) --> subSequence length
+            while (hm[curr + 1]) { //O(k), --> subSequence length, i.e also once so doesn't make O(n*k)
                 curr++;
                 currentSeq++;
             }
@@ -26,3 +26,6 @@ var longestConsecutive = function (nums) {
     }
     return longestSeq;
 };
+
+// TC -> O(n)
+// SC -> O(n) 
