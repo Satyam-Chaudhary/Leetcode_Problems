@@ -3,76 +3,76 @@
  * @param {number} k
  * @return {number[]}
  */
-class MinHeap {
-    constructor() {
-        this.heap = [];
-    }
+// class MinHeap {
+//     constructor() {
+//         this.heap = [];
+//     }
 
-    getParentIndex(i) {
-        return Math.floor((i - 1) / 2);
-    }
+//     getParentIndex(i) {
+//         return Math.floor((i - 1) / 2);
+//     }
 
-    getLeftChildIndex(i) {
-        return 2 * i + 1;
-    }
+//     getLeftChildIndex(i) {
+//         return 2 * i + 1;
+//     }
 
-    getRightChildIndex(i) {
-        return 2 * i + 2;
-    }
+//     getRightChildIndex(i) {
+//         return 2 * i + 2;
+//     }
 
-    swap(i, j) {
-        [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
-    }
+//     swap(i, j) {
+//         [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
+//     }
 
-    push(val) {
-        this.heap.push(val);
-        this.heapifyUp(this.heap.length - 1);
-    }
+//     push(val) {
+//         this.heap.push(val);
+//         this.heapifyUp(this.heap.length - 1);
+//     }
 
-    pop() {
-        if (this.heap.length === 1) return this.heap.pop();
-        const root = this.heap[0];
-        this.heap[0] = this.heap.pop();
-        this.heapifyDown(0);
-        return root;
-    }
+//     pop() {
+//         if (this.heap.length === 1) return this.heap.pop();
+//         const root = this.heap[0];
+//         this.heap[0] = this.heap.pop();
+//         this.heapifyDown(0);
+//         return root;
+//     }
 
-    heapifyUp(index) {
-        let currentIndex = index;
-        while (currentIndex > 0) {
-            const parentIndex = this.getParentIndex(currentIndex);
-            if (this.heap[currentIndex][0] < this.heap[parentIndex][0]) {
-                this.swap(currentIndex, parentIndex);
-                currentIndex = parentIndex;
-            } else {
-                break;
-            }
-        }
-    }
+//     heapifyUp(index) {
+//         let currentIndex = index;
+//         while (currentIndex > 0) {
+//             const parentIndex = this.getParentIndex(currentIndex);
+//             if (this.heap[currentIndex][0] < this.heap[parentIndex][0]) {
+//                 this.swap(currentIndex, parentIndex);
+//                 currentIndex = parentIndex;
+//             } else {
+//                 break;
+//             }
+//         }
+//     }
 
-    heapifyDown(index) {
-        let currentIndex = index;
-        while (this.getLeftChildIndex(currentIndex) < this.heap.length) {
-            let smallerChildIndex = this.getLeftChildIndex(currentIndex);
-            if (
-                this.getRightChildIndex(currentIndex) < this.heap.length &&
-                this.heap[this.getRightChildIndex(currentIndex)][0] < this.heap[smallerChildIndex][0]
-            ) {
-                smallerChildIndex = this.getRightChildIndex(currentIndex);
-            }
-            if (this.heap[currentIndex][0] > this.heap[smallerChildIndex][0]) {
-                this.swap(currentIndex, smallerChildIndex);
-                currentIndex = smallerChildIndex;
-            } else {
-                break;
-            }
-        }
-    }
+//     heapifyDown(index) {
+//         let currentIndex = index;
+//         while (this.getLeftChildIndex(currentIndex) < this.heap.length) {
+//             let smallerChildIndex = this.getLeftChildIndex(currentIndex);
+//             if (
+//                 this.getRightChildIndex(currentIndex) < this.heap.length &&
+//                 this.heap[this.getRightChildIndex(currentIndex)][0] < this.heap[smallerChildIndex][0]
+//             ) {
+//                 smallerChildIndex = this.getRightChildIndex(currentIndex);
+//             }
+//             if (this.heap[currentIndex][0] > this.heap[smallerChildIndex][0]) {
+//                 this.swap(currentIndex, smallerChildIndex);
+//                 currentIndex = smallerChildIndex;
+//             } else {
+//                 break;
+//             }
+//         }
+//     }
 
-    size() {
-        return this.heap.length;
-    }
-}
+//     size() {
+//         return this.heap.length;
+//     }
+// }
 
 
 var topKFrequent = function (nums, k) {
