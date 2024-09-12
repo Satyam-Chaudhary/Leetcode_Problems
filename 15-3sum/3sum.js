@@ -5,7 +5,7 @@
 var threeSum = function (nums) {
     if (nums.lenght < 3) return [];
     let res = [];
-    res = twoPointerSol(nums, res);
+    res = hashMapSol(nums, res);
     return res;
 
 
@@ -40,5 +40,36 @@ function twoPointerSol(nums,res) {
             }
         }
     }
+    return res;
+};
+
+function hashMapSol(nums, res){
+    nums.sort((a, b) => a - b); 
+
+    for (let i = 0; i < nums.length; i++) {
+        const a = nums[i];
+
+        if (a > 0) break; 
+        if (i > 0 && a === nums[i - 1]) continue; 
+
+        const target = -a;
+        const seen = new Set();
+        for (let j = i + 1; j < nums.length; j++) {
+            const b = nums[j];
+            const complement = target - b;
+
+            if (seen.has(complement)) {
+                res.push([a, complement, b]);
+
+                while (j + 1 < nums.length && nums[j + 1] === b) {
+                    j++;
+                }
+            }
+
+            
+            seen.add(b);
+        }
+    }
+
     return res;
 }
