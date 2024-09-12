@@ -4,8 +4,15 @@
  */
 var threeSum = function (nums) {
     if (nums.lenght < 3) return [];
-    const res = [];
+    let res = [];
+    res = twoPointerSol(nums, res);
+    return res;
 
+
+};
+
+
+function twoPointerSol(nums,res) {
     nums.sort((a, b) => a - b);
 
     for (let i = 0; i < nums.length; i++) {
@@ -29,10 +36,9 @@ var threeSum = function (nums) {
                 while (left < right && nums[left] === nums[left - 1]) {
                     left++;
                 }
-                
+
             }
         }
     }
     return res;
-};
-
+}
