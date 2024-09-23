@@ -5,7 +5,7 @@
  */
 var minEatingSpeed = function (piles, h) {
 
-    return optimal(piles, h);
+    return optimal2(piles, h);
 
 };
 
@@ -33,7 +33,7 @@ function optimal(piles, h) {
         let mid = Math.floor((l + r) / 2);
         let hrs = getTotalHours(piles, mid); // hrs for this k
         if (hrs <= h) { // koko eating fast slow koko
-            r = mid - 1; // not mid - 1 as no case for mid when hrs === h
+            r = mid -1; // not mid - 1 as no case for mid when hrs === h
         }
         else { // koko slow fasten her
             l = mid + 1;
@@ -53,5 +53,27 @@ function getTotalHours(piles, k) {
         }
     }
     return hrs;
+}
+
+
+function optimal2(piles,h){
+    let l = 0; 
+    let r = Math.max(...piles);
+
+    let res = r;
+
+    while(l<=r){
+        k = Math.floor((l+r)/2);
+        let hrs = getTotalHours(piles, k);
+
+        if(hrs <= h){
+            res = Math.min(res,k);
+            r = k -1;
+        }else{
+            l = k + 1;
+        }
+    }
+
+    return res;
 }
 
