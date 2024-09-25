@@ -5,8 +5,6 @@
 var findMin = function(nums) {
     //case for no rotation
     const n = nums.length;
-    if(n === 1) return nums[0];
-
     //case for rotation
     return binaryApproach(nums,n);
 
