@@ -6,7 +6,7 @@ var findMin = function (nums) {
     //case for no rotation
     const n = nums.length;
     //case for rotation
-    return findMin(nums, n);
+    return optimalApproach(nums, n);
 };
 
 // function binaryApproach(nums, n) {
@@ -46,7 +46,6 @@ function optimalApproach(nums,n){
         let mid = Math.floor((l+r)/2);
         if(n <= 1) return nums[l]
         if(nums[l] < nums[r]){ // sorted array or right sorted array
-            return Math.min(nums[l], res);
             return nums[l];
             break;
         }
@@ -55,10 +54,10 @@ function optimalApproach(nums,n){
         if(nums[mid] >= nums[l]){
             l = mid + 1;
         }else{
-            r = mid - 1;
+            r = mid
         }
     };
-    return res;
+    return nums[l];
 }
 
 var findMin = function(nums) {
