@@ -4,7 +4,7 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    return searchRes(nums,target);
+    return optimal(nums,target);
 };
 
 function searchRes(nums,target){
@@ -43,4 +43,32 @@ function modifiedBinarySearch(nums,l,r,target){
         }
     }
     return -1;
+};
+
+
+function optimal(nums,target){
+    let [l,r] = [0,nums.length - 1];
+    while(l <= r){
+        let mid = Math.floor((l+r)/2);
+        if(nums[mid] === target) return mid;
+
+        //left sorted portion
+        if(nums[l] <= nums[mid]){
+            if(nums[mid] < target || target < nums[l]){
+                l = mid + 1;
+            }else{
+                r = mid - 1;
+            }
+        }else{
+        //right soretd array
+        
+        if(nums[mid] > target || target > nums[r]){
+            r = mid - 1;
+        }else{
+            l = mid + 1;
+        }
+        }
+    };
+    return -1;
 }
+
