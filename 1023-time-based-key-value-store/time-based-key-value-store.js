@@ -25,10 +25,13 @@ TimeMap.prototype.get = function(key, timestamp) {
     if(!this.map.get(key)) return '';
     let mapArr = this.map.get(key);
     let [l,r] = [0,mapArr.length - 1];
+    let res;
 
     while(l <= r){
         let mid = Math.floor((l+r)/2);
-        if(mapArr[mid].timestamp === timestamp) return mapArr[mid].value;
+        //if(mapArr[mid].timestamp === timestamp) return mapArr[mid].value;
+
+        if(mapArr[mid].timestamp <= timestamp) res = mapArr[mid].value;
         
         if(mapArr[mid].timestamp < timestamp){
             l = mid + 1;
@@ -37,7 +40,8 @@ TimeMap.prototype.get = function(key, timestamp) {
         }
     }
 
-    return r >= 0 ? mapArr[r].value : '';
+    //return r >= 0 ? mapArr[r].value : '';
+    return res !== undefined ? res : '';
 };
 
 /** 
