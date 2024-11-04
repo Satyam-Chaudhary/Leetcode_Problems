@@ -15,6 +15,13 @@ class Solution:
 
             return max(recursiveMaxDepth(node.left,count), recursiveMaxDepth(node.right,count))
 
-        return recursiveMaxDepth(root, count)
+        def recursiveMaxDepthWithoutCount(node):
+            if not node:
+                return 0
+            
+            return max(recursiveMaxDepthWithoutCount(node.left), recursiveMaxDepthWithoutCount(node.right)) + 1
+
+        # return recursiveMaxDepth(root, count)
+        return recursiveMaxDepthWithoutCount(root)
         
         
