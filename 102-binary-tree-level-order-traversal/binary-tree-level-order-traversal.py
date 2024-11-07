@@ -28,7 +28,17 @@ class Solution:
                         queue.append(x.right)
                 finalRes.append(cla)
 
-        bfsSol(root)
+        def dfsSol(node, level):
+            if not node:
+                return
+            if level == len(finalRes):
+                finalRes.append([])
+            finalRes[level].append(node.val)
+            dfsSol(node.left, level+1)
+            dfsSol(node.right, level+1)
+
+        # bfsSol(root)
+        dfsSol(root, 0)
 
         return finalRes
 
