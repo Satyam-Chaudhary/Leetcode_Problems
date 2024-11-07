@@ -9,24 +9,30 @@ class Solution:
         if not root:
             return []
         finalRes = []
-        queue = deque()
-        queue.append(root)
+        
 
-        while queue:
-            clLength = len(queue) #current - level length
-            cla = [] # current-level array
+        def bfsSol(root):
+            queue = deque()
+            queue.append(root)
 
-            for i in range(0, clLength):
-                x = queue.popleft()
-                cla.append(x.val)
-                if x.left:
-                    queue.append(x.left)
-                if x.right:
-                    queue.append(x.right)
-            finalRes.append(cla)
+            while queue:
+                clLength = len(queue) #current - level length
+                cla = [] # current-level array
+
+                for i in range(0, clLength):
+                    x = queue.popleft()
+                    cla.append(x.val)
+                    if x.left:
+                        queue.append(x.left)
+                    if x.right:
+                        queue.append(x.right)
+                finalRes.append(cla)
+
+        bfsSol(root)
 
         return finalRes
-            
+
+
             
 
        
