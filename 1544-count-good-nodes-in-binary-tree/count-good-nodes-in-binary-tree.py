@@ -9,12 +9,20 @@ class Solution:
         def sol(node, maxInPath):
             if not node:
                 return 0
-            isGood = 1 if node.val >= maxInPath else 0
+            # isGood = 1 if node.val >= maxInPath else 0
+            # newMax = max(node.val, maxInPath)
+
+            # leftGood = sol(node.left, newMax)
+            # rightGood = sol(node.right, newMax)
+
+            # return isGood + leftGood + rightGood
+
+            res = 1 if node.val >= maxInPath else 0
             newMax = max(node.val, maxInPath)
+            res += sol(node.left, newMax)
+            res += sol(node.right, newMax)
+            return res
 
-            leftGood = sol(node.left, newMax)
-            rightGood = sol(node.right, newMax)
-
-            return isGood + leftGood + rightGood
 
         return sol(root, root.val)
+        
