@@ -1,7 +1,8 @@
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         count = 0
-        def recursiveTree(index, currentSum, remSum):
+        dp = {}
+        def BranchAndBoundSol(index, currentSum, remSum):
             nonlocal count
             if (currentSum + remSum < target or currentSum - remSum > target):
                 return
@@ -9,9 +10,22 @@ class Solution:
                 if currentSum == target:
                     count += 1
                 return
-            recursiveTree(index + 1, currentSum + nums[index], remSum - nums[index])
-            recursiveTree(index + 1, currentSum  - nums[index], remSum - nums[index])
+            BranchAndBoundSol(index + 1, currentSum + nums[index], remSum - nums[index])
+            BranchAndBoundSol(index + 1, currentSum  - nums[index], remSum - nums[index])
         
-        totalSum = sum(nums)
-        recursiveTree(0, 0, totalSum)
-        return count
+        # totalSum = sum(nums)
+        # BranchAndBoundSol(0, 0, totalSum)
+        # return count
+
+        dp = {}
+        def dpSol(ind, currSum):
+            if (ind, currSum) in dp:
+                return dp[(ind, currSum)]
+            if ind == len(nums):
+                return 1 if currSum == target else 0
+            add = dpSol(ind + 1, currSum + nums[ind])
+            sub = dpSol(ind + 1, currSum - nums[ind])
+
+            dp[(ind, currSum)] = add + sub
+            return dp[(ind, currSum)]
+        return dpSol(0,0)
