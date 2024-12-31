@@ -17,8 +17,8 @@ class Solution:
         # BranchAndBoundSol(0, 0, totalSum)
         # return count
 
-        dp = {}
-        def dpSol(ind, currSum):
+        dp = {} # (ind, currSum) -> number of ways
+        def dpSol(ind, currSum): 
             if (ind, currSum) in dp:
                 return dp[(ind, currSum)]
             if ind == len(nums):
@@ -28,4 +28,22 @@ class Solution:
 
             dp[(ind, currSum)] = add + sub
             return dp[(ind, currSum)]
-        return dpSol(0,0)
+        # return dpSol(0,0)
+
+        def dp2dSol():
+            n = len(nums)
+            dp = [defaultdict(int) for _ in range(n+1)]
+            dp[0][0] = 1 # no of ways to get sum 0 with 0 elements i.e 1 way
+
+            for i in range(len(nums)):
+                for currSum , count in dp[i].items():
+                    dp[i+1][currSum + nums[i]] += count
+                    dp[i+1][currSum - nums[i]] += count
+
+            # print(dp)
+
+            return dp[len(nums)][target]
+        
+        return dp2dSol()
+            
+
