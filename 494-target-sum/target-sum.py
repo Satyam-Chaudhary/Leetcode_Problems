@@ -44,6 +44,22 @@ class Solution:
 
             return dp[len(nums)][target]
         
-        return dp2dSol()
+        # return dp2dSol()
+
+        def optimized2dDpSol():
+            dp = defaultdict(int)
+            dp[0] = 1
+
+            for i in range(len(nums)):
+                nextDp = defaultdict(int)
+                for currSum, count in dp.items():
+                    nextDp[currSum + nums[i]] += count
+                    nextDp[currSum - nums[i]] += count
+                dp = nextDp
+            
+            return dp[target]
+
+        return optimized2dDpSol()
+
             
 
