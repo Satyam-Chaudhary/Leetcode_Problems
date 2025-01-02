@@ -27,8 +27,8 @@ class Solution:
             return min(costToReachTop(0), costToReachTop(1))
 
 
-        return dpTopDown()
-        # return dpBottomUp()
+        # return dpTopDown()
+        return dpBottomUp()
 
 
 
