@@ -13,7 +13,24 @@ class Solution:
                 i -= 1
             return min(cost[0], cost[1])
 
-        return dpBottomUp(cost)
+        def dpTopDown(cost):
+
+            cache = [-1]*len(cost)
+            def costToReachTop(i):
+                if i >= len(cost):
+                    return 0
+                if cache[i] != -1:
+                    return cache[i]
+                cache[i] = cost[i] + min(costToReachTop(i+1), costToReachTop(i+2))
+                return cache[i]
+            
+            return min(costToReachTop(0), costToReachTop(1))
+
+
+        return dpTopDown(cost)
+        # return dpBottomUp(cost)
+
+
 
 
 
