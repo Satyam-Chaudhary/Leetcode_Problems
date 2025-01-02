@@ -1,6 +1,6 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        def dpBottomUp(cost):
+        def dpBottomUp():
             one = len(cost) - 2
             two = len(cost) - 1
 
@@ -13,7 +13,7 @@ class Solution:
                 i -= 1
             return min(cost[0], cost[1])
 
-        def dpTopDown(cost):
+        def dpTopDown():
 
             cache = [-1]*len(cost)
             def costToReachTop(i):
@@ -27,8 +27,8 @@ class Solution:
             return min(costToReachTop(0), costToReachTop(1))
 
 
-        return dpTopDown(cost)
-        # return dpBottomUp(cost)
+        return dpTopDown()
+        # return dpBottomUp()
 
 
 
